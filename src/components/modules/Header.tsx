@@ -13,7 +13,7 @@ export const Header = ({children}: IHeaderProps) => {
     };
     
     return (
-        <Container fluid>
+        <Container className="p-0">
             {children}
         </Container>
     )

@@ -3,6 +3,10 @@ import default_data from "../default_data.json";
 
 interface IElementsState {
     elements: Array<object | any>;
+    selectedProperties:{
+        name?: string,
+        properties?: object;
+    };
     loading: "idle" | "pending" | "rejected" | "loaded"
 }
 
@@ -10,6 +14,7 @@ const defaultData: string = JSON.stringify(default_data)
 
 const initialState: IElementsState = {
     elements:JSON.parse(defaultData),
+    selectedProperties:{},
     loading:"idle"
 
 }
@@ -21,6 +26,9 @@ export const elementsSlice = createSlice({
         setElements(state,action: PayloadAction<any>){
             state.elements = action.payload;
         },
+        setSelectedProperties(state,action: PayloadAction<any>){
+            state.selectedProperties = action.payload;
+        }
     },
 })
 
