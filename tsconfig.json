@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noEmit": false,
+    "declaration":true,  // Ensure that .d.ts files are created by tsc, but not .js files
+    // "emitDeclarationOnly": true,
+    "isolatedModules": true,//  safely transpile files in the TypeScript project
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "baseUrl": "src/",
+    "paths": {
+      "@modules/*":["modules/*"],
+      "@styles/*":["styles/*"],
+      "@API":["api/index.js"],
+      "@store":["store/*"],
+      "@icons/*":["images/icons/*"],
+      "@hooks/*":["hooks/*"],
+      "@portals":["portals/*"]
+    },
+    "lib": ["es2015", "es2016", "dom", "es2018.promise"]
+    }
+  }
