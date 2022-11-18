@@ -22,7 +22,7 @@
                 },
                 "RAM": {
                   "amount": "16Gb",
-                  "slots": 2,
+                  "slots": "2",
                   "speed": "3200 Mhz"
                 }
               }
@@ -40,11 +40,12 @@
                 "CPU": {
                   "name": "Intel",
                   "ver": "Core i5 11400H",
-                  "speed": "2.7 Hhz"
+                  "speed": "2.7 Hhz",
+                  "edditable":true
                 },
                 "RAM": {
                   "amount": "16Gb",
-                  "slots": 2,
+                  "slots": "2",
                   "speed": "3200 Mhz",
                   "type": "DDR4 SO-DIMM"
                 }
@@ -62,6 +63,7 @@
                 "color": "gray",
                 "GPU": {
                   "name": "Intel",
+                  "edditable": true,
                   "ver": "Intel UHD Graphics"
                 },
                 "CPU": {
@@ -71,7 +73,7 @@
                 },
                 "RAM": {
                   "amount": "4Gb",
-                  "slots": 1,
+                  "slots": "1",
                   "speed": "3200 Mhz",
                   "type": "DDR4"
                 }
@@ -106,8 +108,8 @@
                 "CPU": {
                   "name": "Apple",
                   "ver": "M1",
-                  "cores": 8,
-                  "GPU cores": 7
+                  "cores": "8",
+                  "GPU cores": "7"
                 },
                 "RAM": {
                   "amount": "8Gb"
@@ -119,6 +121,7 @@
       ]
     },
     {
-      "name":"PC"
+      "name":"PC",
+      "children":[]
     }
 ]
