@@ -4,6 +4,7 @@ import default_data from "../default_data.json";
 interface IElementsState {
     elements: Array<object | any>;
     selectedProperties:{
+        [x: string]: any;
         name?: string,
         properties?: object;
     };

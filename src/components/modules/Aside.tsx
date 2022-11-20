@@ -21,19 +21,16 @@ export const Aside = () => {
   const treeClickHandler = (e: any,child: object): void => {
     e.stopPropagation();
     const haveRequieredProperties = child.hasOwnProperty("properties");
-    console.log(child);
     dispatch(setSelectedProperties(child));
   }
 
   const renderTreeStructure = (): Array<ReactNode> => {
     let structure = [];
-    let childrenIteration = 0;
 
     const renderChildren = (
       children: Array<any>,
       parentName: string = undefined
     ) => {
-      childrenIteration++
       return (
         <ListGroup key={`${parentName}`} style={{border:"none"}}>
         <h3>{parentName}</h3>
@@ -67,7 +64,7 @@ export const Aside = () => {
           <Accordion.Header>{name}</Accordion.Header>
           <Accordion.Body style={{padding:"0"}}>
            
-        <ListGroup style={{textAlign:"center"}}>
+        <ListGroup style={{textAlign:"left"}}>
         {
           propsArray.map((pair: Array<any>, i: number) => {
             const pairHasChildren: boolean = pair[1].hasOwnProperty("children");
@@ -76,11 +73,13 @@ export const Aside = () => {
                 {
                   !pairHasChildren && Array.isArray(pair[1]) ? 
                   renderChildren(Object.entries(pair[1]), pair[0])
-                  
+                  // :
+                  // !pairHasChildren && typeof pair[1] !== "boolean" ?
+                  // <input type="text" value={pair[1]}/>
                   // TODO плохо определяется тип у слотов при number
                   : !pairHasChildren && typeof pair[1] !== "string" ?
                   renderProperties(pair[1], pair[0])
-                  
+
                   : 
                   <span style={{padding:"8px 0 8px 8px"}}>{`${pair[0]} : ${pair[1]} `}</span>
                 }
@@ -102,7 +101,6 @@ export const Aside = () => {
                 structure.push(childList);
               }
             }
-    console.log(childrenIteration)
     return structure;
   };
 
@@ -110,9 +108,7 @@ export const Aside = () => {
   return (
     <AsideContainer>
     <Container>
-      <Button variant="primary" onClick={(e: any) => clickHandler()}>
-        Launch
-      </Button>
+      <Button variant="primary" onClick={(e: any) => clickHandler()}>open</Button>
 
       <Offcanvas show={treeShown} onHide={(e: any) => clickHandler("close")}>
         <Offcanvas.Header closeButton>
