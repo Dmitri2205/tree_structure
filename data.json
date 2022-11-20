@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Notebooks",
+    "children": [
+      {
+        "name": "Gaming",
+        "children": [
+          {
+            "name": "HP Victus",
+            "properties": {
+              "rev": "16-e0151ur 638F6EA",
+              "color": "gray",
+              "GPU": { "name": "NVIDIA", "ver": "RTX 3050", "amount": "4G" },
+              "CPU": {
+                "name": "AMD",
+                "ver": "Ryzen 5 5600H",
+                "frequency": "3.3 Hhz"
+              },
+              "RAM": { "amount": "16Gb", "slots": "2", "frequency": "3200 Mhz" }
+            }
+          },
+          {
+            "name": "MSI Katana",
+            "properties": {
+              "rev": "GF66 11UE-655RU",
+              "color": "black",
+              "GPU": { "name": "NVIDIA", "ver": "RTX 3060", "amount": "6G" },
+              "CPU": {
+                "name": "Intel",
+                "ver": "Core i5 11400H",
+                "frequency": "2.7 Hhz",
+                "edditable": true
+              },
+              "RAM": {
+                "amount": "16Gb",
+                "slots": "2",
+                "frequency": "3200 Mhz",
+                "type": "DDR4 SO-DIMM"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Media",
+        "children": [
+          {
+            "name": " Lenovo IdeaPad 3",
+            "properties": {
+              "rev": "15ITL6/82H802BTAK",
+              "color": "gray",
+              "GPU": {
+                "name": "Intel",
+                "edditable": true,
+                "ver": "Intel UHD Graphics"
+              },
+              "CPU": {
+                "name": "Intel",
+                "ver": "Core i3 1115G4 ",
+                "frequency": "3.0 Hhz"
+              },
+              "RAM": {
+                "amount": "4Gb",
+                "slots": "1",
+                "frequency": "3200 Mhz",
+                "type": "DDR4"
+              }
+            }
+          },
+          {
+            "name": "Acer Aspire 3",
+            "properties": {
+              "rev": "A315-34 (NX.HE3ER.026)",
+              "color": "black",
+              "GPU": { "name": "Intel", "ver": "Intel UHD Graphics 605" },
+              "CPU": {
+                "name": "Intel",
+                "ver": "Pentium N5030",
+                "frequency": "1.1 Hhz"
+              },
+              "RAM": { "amount": "8Gb", "frequency": "2400 Mhz", "type": "DDR4" }
+            }
+          },
+          {
+            "name": "Apple MacBook Air 13",
+            "properties": {
+              "rev": "M1/8/256 Gold (MGND3)",
+              "color": "gold",
+              "CPU": {
+                "name": "Apple",
+                "ver": "M1",
+                "cores": "8",
+                "GPU cores": "7"
+              },
+              "RAM": { "amount": "8Gb" }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  { "name": "PC", 
+    "children": [
+        {
+          "name": "Gaming",
+          "children": [
+            {
+              "name": "HP Victus",
+              "properties": {
+                "rev": "15L DT TG02-0061ci 699A3EA",
+                "color": "gray",
+                "type":"GSB",
+                "GPU": { "name": "NVIDIA", "ver": "GeForce RTX 3060 Ti", "amount": "8G","type":"GDDR6" },
+                "CPU": {
+                  "name": "Intel",
+                  "ver": "Core i5 12400F",
+                  "frequency": "2.5 Hhz"
+                },
+                "RAM": { "amount": "16Gb", "frequency": "3200 Mhz","type":"DDR4" }
+              }
+            }
+            ]
+        }
+    ]
+}
+]
+

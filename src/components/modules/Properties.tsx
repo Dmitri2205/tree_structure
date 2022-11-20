@@ -7,6 +7,7 @@ export const Properties = () => {
 
     const {setElements} = elementsSlice.actions;
     const {selectedProperties,elements} = useAppSelector((state)=>state.elementsReducer)
+    
     const [properties,setProperties] = useState<any>(null);
     const [showModal,setShowModal] = useState<boolean>(false)
 
@@ -58,12 +59,12 @@ export const Properties = () => {
     }
 
     const fileUploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files[0];
+        const file: File = e.target.files[0];
         const fr: FileReader = new FileReader();
         fr.onload = (e: any)=>{
             const value = e.target.result;
-            console.log()
             dispatch(setElements(JSON.parse(value)))
+            setShowModal(false);
         }
         fr.readAsText(file);
     }

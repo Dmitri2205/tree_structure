@@ -18,12 +18,12 @@
                 "CPU": {
                   "name": "AMD",
                   "ver": "Ryzen 5 5600H",
-                  "speed": "3.3 Hhz"
+                  "frequency": "3.3 Hhz"
                 },
                 "RAM": {
                   "amount": "16Gb",
                   "slots": "2",
-                  "speed": "3200 Mhz"
+                  "frequency": "3200 Mhz"
                 }
               }
             },
@@ -40,13 +40,13 @@
                 "CPU": {
                   "name": "Intel",
                   "ver": "Core i5 11400H",
-                  "speed": "2.7 Hhz",
+                  "frequency": "2.7 Hhz",
                   "edditable":true
                 },
                 "RAM": {
                   "amount": "16Gb",
                   "slots": "2",
-                  "speed": "3200 Mhz",
+                  "frequency": "3200 Mhz",
                   "type": "DDR4 SO-DIMM"
                 }
               }
@@ -63,18 +63,17 @@
                 "color": "gray",
                 "GPU": {
                   "name": "Intel",
-                  "edditable": true,
                   "ver": "Intel UHD Graphics"
                 },
                 "CPU": {
                   "name": "Intel",
                   "ver": "Core i3 1115G4 ",
-                  "speed": "3.0 Hhz"
+                  "frequency": "3.0 Hhz"
                 },
                 "RAM": {
                   "amount": "4Gb",
                   "slots": "1",
-                  "speed": "3200 Mhz",
+                  "frequency": "3200 Mhz",
                   "type": "DDR4"
                 }
               }
@@ -91,11 +90,11 @@
                 "CPU": {
                   "name": "Intel",
                   "ver": "Pentium N5030",
-                  "speed": "1.1 Hhz"
+                  "frequency": "1.1 Hhz"
                 },
                 "RAM": {
                   "amount": "8Gb",
-                  "speed": "2400 Mhz",
+                  "frequency": "2400 Mhz",
                   "type": "DDR4"
                 }
               }
