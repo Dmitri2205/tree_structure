@@ -10,6 +10,7 @@ interface IElementsState {
             path?: any
         },
         path:string,
+        edited: boolean
     }
 }
 
@@ -17,7 +18,7 @@ const defaultData: string = JSON.stringify(default_data)
 
 const initialState: IElementsState = {
     elements:JSON.parse(defaultData),
-    selectedProperties:{child:{},path:""}
+    selectedProperties:{child:{},path:"",edited:false}
 
 }
 
@@ -36,6 +37,13 @@ export const elementsSlice = createSlice({
         handlePropChange(state,action: PayloadAction<any>){
             const {property,value,childIndex,tabName} = action.payload;
             state.selectedProperties.child.properties[tabName][property] = value;
+            state.selectedProperties.edited = true;
+        },
+        updateData(state,action: PayloadAction<any>){
+
+            const {sectionIndex,sectionChildIndex,childIndex,value} = action.payload;
+            state.elements[sectionIndex].children[sectionChildIndex].children[childIndex] = value.selectedProperties.child;
+            state.selectedProperties.edited = false;
         }
     },
 })
