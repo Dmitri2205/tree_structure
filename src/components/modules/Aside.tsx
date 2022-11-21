@@ -73,9 +73,6 @@ export const Aside = () => {
                 {
                   !pairHasChildren && Array.isArray(pair[1]) ? 
                   renderChildren(Object.entries(pair[1]), pair[0])
-                  // :
-                  // !pairHasChildren && typeof pair[1] !== "boolean" ?
-                  // <input type="text" value={pair[1]}/>
                   // TODO плохо определяется тип у слотов при number
                   : !pairHasChildren && typeof pair[1] !== "string" ?
                   renderProperties(pair[1], pair[0])

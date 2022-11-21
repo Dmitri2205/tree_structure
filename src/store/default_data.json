@@ -6,9 +6,8 @@
           "name": "Gaming",
           "children": [
             {
-              "name": "HP Victus",
+              "name": "HP Victus 16-e0151ur 638F6EA",
               "properties": {
-                "rev": "16-e0151ur 638F6EA",
                 "color": "gray",
                 "GPU": {
                   "name": "NVIDIA",
@@ -28,9 +27,8 @@
               }
             },
             {
-              "name": "MSI Katana",
+              "name": "MSI Katana GF66 11UE-655RU",
               "properties": {
-                "rev": "GF66 11UE-655RU",
                 "color": "black",
                 "GPU": {
                   "name": "NVIDIA",
@@ -40,8 +38,7 @@
                 "CPU": {
                   "name": "Intel",
                   "ver": "Core i5 11400H",
-                  "frequency": "2.7 Hhz",
-                  "edditable":true
+                  "frequency": "2.7 Hhz"
                 },
                 "RAM": {
                   "amount": "16Gb",
@@ -57,9 +54,8 @@
           "name": "Media",
           "children": [
             {
-              "name": " Lenovo IdeaPad 3",
+              "name": " Lenovo IdeaPad 3 15ITL6/82H802BTAK",
               "properties": {
-                "rev": "15ITL6/82H802BTAK",
                 "color": "gray",
                 "GPU": {
                   "name": "Intel",
@@ -79,9 +75,8 @@
               }
             },
             {
-              "name": "Acer Aspire 3",
+              "name": "Acer Aspire 3 A315-34 (NX.HE3ER.026)",
               "properties": {
-                "rev": "A315-34 (NX.HE3ER.026)",
                 "color": "black",
                 "GPU": {
                   "name": "Intel",
@@ -100,9 +95,8 @@
               }
             },
             {
-              "name": "Apple MacBook Air 13",
+              "name": "Apple MacBook Air 13 M1/8/256 Gold (MGND3)",
               "properties": {
-                "rev": "M1/8/256 Gold (MGND3)",
                 "color": "gold",
                 "CPU": {
                   "name": "Apple",

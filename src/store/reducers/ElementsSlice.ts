@@ -4,9 +4,8 @@ import default_data from "../default_data.json";
 interface IElementsState {
     elements: Array<object | any>;
     selectedProperties:{
-        [x: string]: any;
         name?: string,
-        properties?: object;
+        properties?: any;
     };
     loading: "idle" | "pending" | "rejected" | "loaded"
 }
@@ -29,6 +28,10 @@ export const elementsSlice = createSlice({
         },
         setSelectedProperties(state,action: PayloadAction<any>){
             state.selectedProperties = action.payload;
+        },
+        handlePropChange(state,action: PayloadAction<any>){
+            const {property,value,childIndex,tabName} = action.payload;
+            state.selectedProperties.properties[tabName][property] = value;
         }
     },
 })

@@ -28,8 +28,7 @@
               "CPU": {
                 "name": "Intel",
                 "ver": "Core i5 11400H",
-                "frequency": "2.7 Hhz",
-                "edditable": true
+                "frequency": "2.7 Hhz"
               },
               "RAM": {
                 "amount": "16Gb",
@@ -109,7 +108,7 @@
               "properties": {
                 "rev": "15L DT TG02-0061ci 699A3EA",
                 "color": "gray",
-                "type":"GSB",
+                "type":"Gaming System Block",
                 "GPU": { "name": "NVIDIA", "ver": "GeForce RTX 3060 Ti", "amount": "8G","type":"GDDR6" },
                 "CPU": {
                   "name": "Intel",

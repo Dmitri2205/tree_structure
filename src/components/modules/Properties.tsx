@@ -1,11 +1,12 @@
-import React, { ChangeEvent, ReactNode, useEffect, useState } from "react";
+import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/hooks";
 import { Button, Modal, Tab, Tabs } from "react-bootstrap";
 import { elementsSlice } from "../../store/reducers/ElementsSlice";
+import usePrev from "@hooks/usePrev";
 
 export const Properties = () => {
 
-    const {setElements} = elementsSlice.actions;
+    const {setElements,handlePropChange} = elementsSlice.actions;
     const {selectedProperties,elements} = useAppSelector((state)=>state.elementsReducer)
     
     const [properties,setProperties] = useState<any>(null);
@@ -19,33 +20,60 @@ export const Properties = () => {
         const result = Object.entries(values)[1][1];
         setProperties(result)
     }
+      const prev: object = usePrev(selectedProperties);
 
     useEffect(()=>{
-        if(Object.keys(selectedProperties).length > 0) calculateSelected()
-    },[selectedProperties,calculateSelected])
+        if(Object.keys(selectedProperties).length > 0) calculateSelected();
+    },[selectedProperties,properties])
 
+
+    const spanReset = (e: any,childIndex:number,property: string,tabName: string) => {
+        let value = e.target.value;
+        let parent = e.target.parentElement;
+        const children = parent.children;
+        const span = document.createElement("span");
+        const newValue = `${property}: ${value} `;
+        span.innerText = newValue;
+        span.onclick = (e) => editPropertiesHandler(property,e.currentTarget,childIndex,tabName)
+        parent.replaceChild(span, children[childIndex])
+        const nameToFind = selectedProperties.name;
+        Object.entries(elements).findIndex((el)=>el.hasOwnProperty("children"))
+        dispatch(handlePropChange({property,value,childIndex,tabName}))
+        calculateSelected;
+        
+    }
+
+    const editPropertiesHandler = (property: string,target:any,childIndex: number,tabName: string) => {
+        const propValue = target.innerText.toString().split(":")[1];
+        const parent = target.parentElement;
+        let children = parent.children;
+        let input = document.createElement("input");
+        input.type = "text";
+        input.value = propValue; 
+        input.onblur = (e:any) => spanReset(e,childIndex,property,tabName)
+        parent.replaceChild(input,children[childIndex])
+    }
 
     const createTabs = () => {
         const tabs = Object.entries(properties);
         const result: Array<ReactNode> = [];
-        tabs.forEach((tabPair:any,i: number)=>{
+        tabs.forEach((tabPair:any,t: number)=>{
             if(typeof tabPair[1] === "object") {
                 result.push(
-                    <Tab eventKey={i-1} title={`${tabPair[0]}`} key={`tab${i-1}`}>
-                        <div className="d-flex flex-column ms-3">
+                    <Tab eventKey={t-1} title={`${tabPair[0]}`} key={`tab${t-1}`}>
+                        <div id={`properties-list${t-1}`} className="d-flex flex-column ms-3" key={`properties${t-1}`}>
                             {
-                                Object.entries(tabPair[1]).map((property,i)=>{
-                                    return(
-                                        <span key={`prop${i}`}>{`${property[0]}:${property[1]}`}</span>
-                                    )
-                                })
+                            Object.entries(tabPair[1]).map((property,i)=>{
+                                return(
+                                    <span onClick={e=>editPropertiesHandler(property[0],e.currentTarget,i,tabPair[0])} key={`property${i-1}`}>{`${property[0]}: ${property[1]}`}</span>
+                                )
+                            })
                             }
                         </div>
                     </Tab>
                 )
             }
         })
-        console.log(result);
         return result;
     }
 
@@ -74,9 +102,10 @@ export const Properties = () => {
         <div className="position-relative">
             <h4 className="mt-2 ms-2">{selectedProperties.name}</h4>
             <Tabs
-                defaultActiveKey="1"
+                defaultActiveKey="0"
                 id="tabs"
                 className="mb-3"
+                unmountOnExit={true}
             >
                 {
                     properties ?
@@ -103,7 +132,7 @@ export const Properties = () => {
                 <input type="file" className="visually-hidden position-absolute w-100 h-100 top-0 start-0" onChange={(e)=>fileUploadHandler(e)}/>
                 </label>
                 <Button variant="primary" onClick={e=>loadHandler()}>
-                Load file
+                Save file
                 </Button>
             </Modal.Footer>
             </Modal>
