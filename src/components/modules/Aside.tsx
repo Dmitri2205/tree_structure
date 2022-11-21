@@ -1,24 +1,29 @@
 import React, {
-  JSXElementConstructor,
-  MouseEventHandler,
   ReactNode,
   useMemo,
-  useState,
+  useState
 } from "react";
-import { useAppSelector } from "@hooks/hooks";
+import { useAppSelector,useAppDispatch } from "@hooks/hooks";
 import { elementsSlice } from "../../store/reducers/ElementsSlice";
-import { Container, Button, Offcanvas, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Container, Button, Offcanvas, ListGroup, ListGroupItem, Accordion } from 'react-bootstrap';
+import {AsideContainer} from "@styles/aside.styles"
 
 export const Aside = () => {
-  const { setElements } = elementsSlice.actions; //сеттер элементов
+  const dispatch = useAppDispatch();
+  const { setSelectedProperties } = elementsSlice.actions; //сеттер элементов
   const { elements } = useAppSelector((state) => state.elementsReducer); //селектор элементов
   const [treeShown, setTreeShown] = useState<boolean>(false);
-
+  
   const clickHandler = (type: string | undefined = undefined): any => {
     setTreeShown(!treeShown);
   };
 
-  const renderTreeStructure = useMemo((): Array<any> => {
+  const treeClickHandler = (e: any,child: object,parent: string): void => {
+    e.stopPropagation();
+    dispatch(setSelectedProperties({child,parent}));
+}
+
+  const renderTreeStructure = (): Array<ReactNode> => {
     let structure = [];
 
     const renderChildren = (
@@ -26,12 +31,16 @@ export const Aside = () => {
       parentName: string = undefined
     ) => {
       return (
-        <ListGroup key={`${parentName}`} onClick={treeClickHandler} style={{border:"3px solid cyan"}}>
+        <ListGroup key={`${parentName}`} style={{border:"none"}}>
         <h3>{parentName}</h3>
         {children.map((child: any, i: number) => {
           const { children } = child;
           return (
-            <ListGroup.Item key={`child-${i}_of_${parentName}`}>
+            <ListGroup.Item 
+                  key={`child-${i}_of_${parentName}`} 
+                  style={{paddingRight:"0",border:"none"}} 
+                  onClick={(e) => treeClickHandler(e,child,parentName)}
+            >
                 {children !== undefined ? (
                   renderChildren(child.children, child.name)
                 ) : (
@@ -49,35 +58,37 @@ export const Aside = () => {
       const propsArray: Array<any> = Object.entries(properties ? properties : child);
 
       return (
-        <ListGroup>
-        <h4>{name}</h4>
+        <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>{name}</Accordion.Header>
+          <Accordion.Body style={{padding:"0"}}>
+           
+        <ListGroup style={{textAlign:"left"}}>
         {
           propsArray.map((pair: Array<any>, i: number) => {
             const pairHasChildren: boolean = pair[1].hasOwnProperty("children");
-            console.log(
-              `Pare: ${pair} \n TypeOf Pair 0 :${typeof pair[0]} \n TypeOf Pair 1 :${typeof pair[1]}`
-              );
-              console.log(Object.keys(pair[1]).length)
-              return (
-                <ListGroup.Item className="mr-0" key={`params${i}ofChild${name}`}>
+            return (
+              <ListGroup.Item key={`params${i}ofChild${name}`} style={{padding:"0",border:"none"}}>
                 {
                   !pairHasChildren && Array.isArray(pair[1]) ? 
                   renderChildren(Object.entries(pair[1]), pair[0])
-                  
+                  // TODO плохо определяется тип у слотов при number
                   : !pairHasChildren && typeof pair[1] !== "string" ?
                   renderProperties(pair[1], pair[0])
-                  
+
                   : 
-                  <span>{`${pair[0]} : ${pair[1]} `}</span>
+                  <span style={{padding:"8px 0 8px 8px"}}>{`${pair[0]} : ${pair[1]} `}</span>
                 }
                 </ListGroup.Item>
                 );
               })
             }
               </ListGroup>
+            </Accordion.Body>
+          </Accordion.Item>
+          </Accordion>
               )
             };
-            //
             
             for (let element of elements) {
               const { children, name } = element;
@@ -87,24 +98,21 @@ export const Aside = () => {
               }
             }
     return structure;
-  }, [elements]);
+  };
 
-  const treeClickHandler = (e: any): void => {
-    console.log(e);
-  }
 
   return (
+    <AsideContainer>
     <Container>
-      <Button variant="primary" onClick={(e: any) => clickHandler()}>
-        Launch
-      </Button>
+      <Button variant="primary" onClick={(e: any) => clickHandler()}>open</Button>
 
       <Offcanvas show={treeShown} onHide={(e: any) => clickHandler("close")}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Structure tree</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>{renderTreeStructure}</Offcanvas.Body>
+        <Offcanvas.Body>{renderTreeStructure()}</Offcanvas.Body>
       </Offcanvas>
     </Container>
+    </AsideContainer>
   );
 };
