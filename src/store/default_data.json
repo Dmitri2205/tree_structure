@@ -115,6 +115,68 @@
     },
     {
       "name":"PC",
-      "children":[]
+      "children":[
+        {
+          "name": "Media",
+          "children": [
+            {
+              "name": " Lenovo IdeaPad 3 15ITL6/82H802BTAK",
+              "properties": {
+                "color": "gray",
+                "GPU": {
+                  "name": "Intel",
+                  "ver": "Intel UHD Graphics"
+                },
+                "CPU": {
+                  "name": "Intel",
+                  "ver": "Core i3 1115G4 ",
+                  "frequency": "3.0 Hhz"
+                },
+                "RAM": {
+                  "amount": "4Gb",
+                  "slots": "1",
+                  "frequency": "3200 Mhz",
+                  "type": "DDR4"
+                }
+              }
+            },
+            {
+              "name": "Acer Aspire 3 A315-34 (NX.HE3ER.026)",
+              "properties": {
+                "color": "black",
+                "GPU": {
+                  "name": "Intel",
+                  "ver": "Intel UHD Graphics 605"
+                },
+                "CPU": {
+                  "name": "Intel",
+                  "ver": "Pentium N5030",
+                  "frequency": "1.1 Hhz"
+                },
+                "RAM": {
+                  "amount": "8Gb",
+                  "frequency": "2400 Mhz",
+                  "type": "DDR4"
+                }
+              }
+            },
+            {
+              "name": "Apple MacBook Air 13 M1/8/256 Gold (MGND3)",
+              "properties": {
+                "color": "gold",
+                "CPU": {
+                  "name": "Apple",
+                  "ver": "M1",
+                  "cores": "8",
+                  "GPU cores": "7"
+                },
+                "RAM": {
+                  "amount": "8Gb"
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
 ]

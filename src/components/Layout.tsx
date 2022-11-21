@@ -5,7 +5,6 @@ import { elementsSlice } from "../store/reducers/ElementsSlice";
 import { useAppSelector,useAppDispatch } from "@hooks/hooks";
 import { Header } from "./modules/Header";
 import { Properties } from "./modules/Properties";
-import usePrev from "../hooks/usePrev"
 
 const Layout = () => {
 
@@ -13,22 +12,34 @@ const Layout = () => {
   const {setElements} = elementsSlice.actions; 
   const dispatch = useAppDispatch();
 
-  const prev: object = usePrev(selectedProperties);
+  const {path} = selectedProperties;
 
-  useEffect(()=>{
-    const current = JSON.stringify(selectedProperties);
-    const previous = JSON.stringify(prev);
-    if(previous && previous !== current){
-        const entries = Object.entries(elements);
-        for(let entrie of entries){
-          if(entrie[1].hasOwnProperty("children") && entrie[1].children.length > 0){
-            entrie[1].children.forEach((child: object,i: number)=>{
-              console.log(child)
-            })
-          }
-        }
-        }
-  },[selectedProperties])
+  // useEffect(()=>{
+    
+  //   if(path.length > 0){
+  //     let sectionIndex = 0;
+  //     let sectionChildIndex = 0;
+  //     let childIndex = 0;
+  //     for(let element of elements){
+  //       let filtered = element.children.filter((child: any,i: number)=>{
+  //         if(child.name === path){
+  //           sectionIndex = i;
+  //           return child;
+  //         }
+  //       })
+  //       const finded = filtered.find((child: any,c: number)=>{
+  //         child.children.forEach((element: any,index: number)=>{
+  //           if(element.name === selectedProperties.child.name) {
+  //             sectionChildIndex = index;
+  //             childIndex = c;
+  //             return {element}
+  //           };
+  //         });
+  //       });
+  //       console.log(elements[sectionIndex].children[sectionChildIndex].children[childIndex])
+  //     }
+  //   }
+  // },[path])
   
   return (
     <Container className="w-100 p-0">

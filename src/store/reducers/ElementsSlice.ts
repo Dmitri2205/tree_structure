@@ -4,18 +4,20 @@ import default_data from "../default_data.json";
 interface IElementsState {
     elements: Array<object | any>;
     selectedProperties:{
-        name?: string,
-        properties?: any;
-    };
-    loading: "idle" | "pending" | "rejected" | "loaded"
+        child:{
+            name?: string,
+            properties?: any;
+            path?: any
+        },
+        path:string,
+    }
 }
 
 const defaultData: string = JSON.stringify(default_data)
 
 const initialState: IElementsState = {
     elements:JSON.parse(defaultData),
-    selectedProperties:{},
-    loading:"idle"
+    selectedProperties:{child:{},path:""}
 
 }
 
@@ -27,11 +29,13 @@ export const elementsSlice = createSlice({
             state.elements = action.payload;
         },
         setSelectedProperties(state,action: PayloadAction<any>){
-            state.selectedProperties = action.payload;
+            const {child,parent}: any = action.payload;
+            state.selectedProperties.child = child;
+            state.selectedProperties.path = parent;
         },
         handlePropChange(state,action: PayloadAction<any>){
             const {property,value,childIndex,tabName} = action.payload;
-            state.selectedProperties.properties[tabName][property] = value;
+            state.selectedProperties.child.properties[tabName][property] = value;
         }
     },
 })

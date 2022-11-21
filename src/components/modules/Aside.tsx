@@ -18,11 +18,10 @@ export const Aside = () => {
     setTreeShown(!treeShown);
   };
 
-  const treeClickHandler = (e: any,child: object): void => {
+  const treeClickHandler = (e: any,child: object,parent: string): void => {
     e.stopPropagation();
-    const haveRequieredProperties = child.hasOwnProperty("properties");
-    dispatch(setSelectedProperties(child));
-  }
+    dispatch(setSelectedProperties({child,parent}));
+}
 
   const renderTreeStructure = (): Array<ReactNode> => {
     let structure = [];
@@ -40,7 +39,7 @@ export const Aside = () => {
             <ListGroup.Item 
                   key={`child-${i}_of_${parentName}`} 
                   style={{paddingRight:"0",border:"none"}} 
-                  onClick={(e) => treeClickHandler(e,child)}
+                  onClick={(e) => treeClickHandler(e,child,parentName)}
             >
                 {children !== undefined ? (
                   renderChildren(child.children, child.name)

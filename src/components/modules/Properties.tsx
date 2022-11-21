@@ -15,16 +15,16 @@ export const Properties = () => {
     const dispatch = useAppDispatch();
 
     const calculateSelected = (): void => {
-        let p = Object.entries(selectedProperties)[1]; 
+        let p = Object.entries(selectedProperties.child)[1]; 
         let values = Object.entries(p)[1];
         const result = Object.entries(values)[1][1];
         setProperties(result)
     }
-      const prev: object = usePrev(selectedProperties);
+      const prev: object = usePrev(selectedProperties.child);
 
     useEffect(()=>{
-        if(Object.keys(selectedProperties).length > 0) calculateSelected();
-    },[selectedProperties,properties])
+        if(Object.keys(selectedProperties.child).length > 0) calculateSelected();
+    },[selectedProperties.child,properties])
 
 
     const spanReset = (e: any,childIndex:number,property: string,tabName: string) => {
@@ -36,8 +36,6 @@ export const Properties = () => {
         span.innerText = newValue;
         span.onclick = (e) => editPropertiesHandler(property,e.currentTarget,childIndex,tabName)
         parent.replaceChild(span, children[childIndex])
-        const nameToFind = selectedProperties.name;
-        Object.entries(elements).findIndex((el)=>el.hasOwnProperty("children"))
         dispatch(handlePropChange({property,value,childIndex,tabName}))
         calculateSelected;
         
@@ -100,7 +98,7 @@ export const Properties = () => {
 
     return(
         <div className="position-relative">
-            <h4 className="mt-2 ms-2">{selectedProperties.name}</h4>
+            <h4 className="mt-2 ms-2">{selectedProperties.child.name}</h4>
             <Tabs
                 defaultActiveKey="0"
                 id="tabs"
@@ -115,7 +113,7 @@ export const Properties = () => {
                 }
             </Tabs>
                 {
-                    Object.keys(selectedProperties).length > 0 ?
+                    Object.keys(selectedProperties.child).length > 0 ?
                     <Button onClick={e=>setShowModal(true)} className="position-absolute bottom-0 end-0">Files</Button>
                     :
                     null
