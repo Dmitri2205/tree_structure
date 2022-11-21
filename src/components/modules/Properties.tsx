@@ -104,6 +104,7 @@ export const Properties = () => {
                 id="tabs"
                 className="mb-3"
                 unmountOnExit={true}
+                mountOnEnter={true}
             >
                 {
                     properties ?
