@@ -18,20 +18,29 @@ export const Aside = () => {
     setTreeShown(!treeShown);
   };
 
-  const treeClickHandler = (e: any,child: object,parent: string): void => {
+  const treeClickHandler = (e: any,child: object): void => {
     e.stopPropagation();
-    dispatch(setSelectedProperties({child,parent}));
+    const  categoryParams: Array<string> = e.currentTarget.parentNode.id.split(":")
+    const [Category,path] = categoryParams;
+    console.log(Category + "for" + path)
+    dispatch(setSelectedProperties({child,category:{Category,path}}));
 }
 
   const renderTreeStructure = (): Array<ReactNode> => {
-    let structure = [];
+    let structure: Array<any> = [];
+
+    let categoryName = "";
 
     const renderChildren = (
       children: Array<any>,
-      parentName: string = undefined
+      parentName: string = undefined,
+      start: boolean
     ) => {
+      if(start){ 
+        categoryName = parentName; 
+      }
       return (
-        <ListGroup key={`${parentName}`} style={{border:"none"}}>
+        <ListGroup key={`${parentName}`} style={{border:"none"}} id={`${categoryName}:${parentName}`}>
         <h3>{parentName}</h3>
         {children.map((child: any, i: number) => {
           const { children } = child;
@@ -39,10 +48,10 @@ export const Aside = () => {
             <ListGroup.Item 
                   key={`child-${i}_of_${parentName}`} 
                   style={{paddingRight:"0",border:"none"}} 
-                  onClick={(e) => treeClickHandler(e,child,parentName)}
+                  onClick={(e) => treeClickHandler(e,child)}
             >
                 {children !== undefined ? (
-                  renderChildren(child.children, child.name)
+                  renderChildren(child.children, child.name,null)
                 ) : (
                   renderProperties(child, child.name)
                 )}
@@ -71,7 +80,7 @@ export const Aside = () => {
               <ListGroup.Item key={`params${i}ofChild${name}`} style={{padding:"0",border:"none"}}>
                 {
                   !pairHasChildren && Array.isArray(pair[1]) ? 
-                  renderChildren(Object.entries(pair[1]), pair[0])
+                  renderChildren(Object.entries(pair[1]), pair[0],null)
                   // TODO плохо определяется тип у слотов при number
                   : !pairHasChildren && typeof pair[1] !== "string" ?
                   renderProperties(pair[1], pair[0])
@@ -93,7 +102,7 @@ export const Aside = () => {
             for (let element of elements) {
               const { children, name } = element;
               if (children) {
-                const childList = renderChildren(children, name);
+                const childList = renderChildren(children, name,true);
                 structure.push(childList);
               }
             }

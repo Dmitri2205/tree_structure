@@ -23,7 +23,9 @@ export const Properties = () => {
       const prev: object = usePrev(selectedProperties.child);
 
     useEffect(()=>{
-        if(Object.keys(selectedProperties.child).length > 0) calculateSelected();
+        if(Object.keys(selectedProperties.child).length > 0 && prev !== selectedProperties.child ) {
+            calculateSelected();
+        }
     },[selectedProperties.child,properties])
 
 
@@ -37,7 +39,7 @@ export const Properties = () => {
         span.onclick = (e) => editPropertiesHandler(property,e.currentTarget,childIndex,tabName)
         parent.replaceChild(span, children[childIndex])
         dispatch(handlePropChange({property,value,childIndex,tabName}))
-        calculateSelected;
+        calculateSelected();
         
     }
 
