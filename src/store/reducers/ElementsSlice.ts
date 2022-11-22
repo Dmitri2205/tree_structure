@@ -7,9 +7,9 @@ interface IElementsState {
         child:{
             name?: string,
             properties?: any;
-            path?: any
         },
-        path:string,
+        path?: any
+        category?:string,
         edited: boolean
     }
 }
@@ -18,7 +18,7 @@ const defaultData: string = JSON.stringify(default_data)
 
 const initialState: IElementsState = {
     elements:JSON.parse(defaultData),
-    selectedProperties:{child:{},path:"",edited:false}
+    selectedProperties:{child:{},category:"",edited:false}
 
 }
 
@@ -30,9 +30,11 @@ export const elementsSlice = createSlice({
             state.elements = action.payload;
         },
         setSelectedProperties(state,action: PayloadAction<any>){
-            const {child,parent}: any = action.payload;
+            const {child,category}: any = action.payload;
+            const {Category,path} = category;
             state.selectedProperties.child = child;
-            state.selectedProperties.path = parent;
+            state.selectedProperties.category = Category;
+            state.selectedProperties.path = path
         },
         handlePropChange(state,action: PayloadAction<any>){
             const {property,value,childIndex,tabName} = action.payload;
@@ -40,9 +42,8 @@ export const elementsSlice = createSlice({
             state.selectedProperties.edited = true;
         },
         updateData(state,action: PayloadAction<any>){
-
-            const {sectionIndex,sectionChildIndex,childIndex,value} = action.payload;
-            state.elements[sectionIndex].children[sectionChildIndex].children[childIndex] = value.selectedProperties.child;
+            const {elementIndex,sectionIndex,sectionChildIndex,value} = action.payload;
+            state.elements[elementIndex].children[sectionIndex].children[sectionChildIndex] = value.selectedProperties.child;
             state.selectedProperties.edited = false;
         }
     },
