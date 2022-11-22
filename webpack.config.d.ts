@@ -57,18 +57,14 @@ declare function _exports(env: any): {
         alias: {
             "@modules": string;
             "@styles": string;
-            "@API": string;
             "@store": string;
-            "@icons": string;
             "@hooks": string;
-            "@portals": string;
         };
     };
     output: {
         filename: string;
         path: string;
         assetModuleFilename: string;
-        publicPath: string;
     };
     devServer: {
         hot: boolean;
