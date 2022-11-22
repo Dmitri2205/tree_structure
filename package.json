@@ -1,10 +1,9 @@
 {
   "name": "tree_project",
   "version": "1.0.0",
-  "description": "Playground progect",
+  "description": "tree project",
   "main": "index.js",
   "scripts": {
-    "test": "test",
     "start": "webpack serve",
     "build": "webpack",
     "predeploy": "npm run build --production",

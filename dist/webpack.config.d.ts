@@ -57,11 +57,8 @@ declare function _exports(env: any): {
         alias: {
             "@modules": string;
             "@styles": string;
-            "@API": string;
             "@store": string;
-            "@icons": string;
             "@hooks": string;
-            "@portals": string;
         };
     };
     output: {
