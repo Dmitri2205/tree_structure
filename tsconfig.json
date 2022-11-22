@@ -2,9 +2,9 @@
     "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noEmit": false,
-    "declaration":true,  // Ensure that .d.ts files are created by tsc, but not .js files
+    "declaration":true,
     // "emitDeclarationOnly": true,
-    "isolatedModules": true,//  safely transpile files in the TypeScript project
+    "isolatedModules": true,
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "es6",
@@ -18,11 +18,8 @@
     "paths": {
       "@modules/*":["modules/*"],
       "@styles/*":["styles/*"],
-      "@API":["api/index.js"],
       "@store":["store/*"],
-      "@icons/*":["images/icons/*"],
       "@hooks/*":["hooks/*"],
-      "@portals":["portals/*"]
     },
     "lib": ["es2015", "es2016", "dom", "es2018.promise"]
     }

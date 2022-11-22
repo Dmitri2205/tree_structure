@@ -76,7 +76,7 @@ const rules = [
 
 const plugins = [
   new HtmlWebpackPlugin({
-    template: "./src/index.html",
+    template: "src/index.html",
   }),
   new Dotenv(),
 ];
@@ -92,18 +92,14 @@ module.exports = (env) => {
       alias: {
         "@modules": path.resolve(__dirname, "src/modules"),
         "@styles": path.resolve(__dirname, "src/styles"),
-        "@API": path.resolve(__dirname, "src/api"),
         "@store": path.resolve(__dirname, "src/store"),
-        "@icons": path.resolve(__dirname, "src/images/icons"),
         "@hooks": path.resolve(__dirname, "src/hooks"),
-        "@portals": path.resolve(__dirname,"src/portals/*")
       },
     },
     output: {
       filename: "bundle.js",
-      path: path.resolve(__dirname, "build"),
+      path: path.resolve(__dirname, "dist"),
       assetModuleFilename: "assets/[name][hash][ext]",
-      publicPath: "/",
     },
     devServer: {
       hot: true,
